@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basquiat: The Crowned Rebel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+
+    <style>
+/* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Aileron;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+            cursor: url('images/favicon.png'), auto;
+        }
+
+        .section-title {
+          font-size: 3.5rem;
+          color: #9F4030;
+          text-align: center;
+          margin-bottom: 60px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+        }
+
+/* Landing Page */
+        #landing-page {
+            background: url('thumbnail.gif') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        #landing-page .title {
+            font-size: 10rem;
+            letter-spacing: 25px;
+            line-height: 140px;
+            text-transform: uppercase;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+            color: whitesmoke;
+            text-shadow: 0 0 10px #9F4030;
+        }
+
+
+        #landing-page .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            font-size: 2rem;
+            color: #9F4030;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        #landing-page .scroll-down:hover {
+            transform: translateY(5px);
+            color: #F4AB4B;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+/* Timeline Section */
+        .timeline-wrapper {
+          width: 90%;
+          max-width: 1000px;
+          margin: 4rem auto;
+          position: relative;
+          padding: 2rem 0;
+        }
+
+        .timeline-wrapper::before {
+          content: '';
+          position: absolute;
+          top: 90px;
+          bottom: 0;
+          left: 50%;
+          width: 3px;
+          background: #9F4030;
+          transform: translateX(-50%);
+        }
+
+        .timeline-heading {
+          text-align: center;
+          font-size: 3.5rem;
+          font-family: Aileron;
+          color: #9F4030;
+          margin-bottom: 3rem;
+        }
+
+        .timeline-entry {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 4rem;
+          position: relative;
+          width: 100%;
+          color: #9F4030;
+        }
+
+        .timeline-entry.left {
+          flex-direction: row-reverse;
+        }
+
+        .timeline-entry.right {
+          flex-direction: row;
+        }
+
+        .timeline-year {
+          font-size: 5rem;
+          font-weight: bold;
+          color: #F4AB4B;
+          width: 50%;
+          text-align: right;
+          padding: 0 1rem;
+          align-self: center;
+        }
+
+        .timeline-entry.left .timeline-year {
+          text-align: left;
+        }
+
+        .timeline-box {
+          background: #fff9ef;
+          padding: 1rem 1.5rem;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          width: 50%;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          position: relative;
+        }
+
+        .timeline-box h3 {
+          margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          color: black;
+        }
+
+        .timeline-box img {
+          width: 100%;
+          max-width: 300px;
+          margin-top: 0.5rem;
+          border-radius: 6px;
+        }
+
+/* Mobile responsive */
+        @media (max-width: 768px) {
+          .timeline-entry,
+          .timeline-entry.left,
+          .timeline-entry.right {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .timeline-year,
+          .timeline-box {
+            width: 90%;
+            text-align: center;
+          }
+
+          .timeline-wrapper::before {
+            left: 10%;
+            transform: none;
+          }
+        }
+
+/* Animation styles */
+        .timeline-entry {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 0.8s ease-out;
+        }
+
+        .timeline-entry.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .timeline-entry.left.animate {
+          transform: translateX(0);
+        }
+
+        .timeline-entry.right.animate {
+          transform: translateX(0);
+        }
+
+        .timeline-entry.left {
+          transform: translateX(-50px);
+        }
+
+        .timeline-entry.right {
+          transform: translateX(50px);
+        }
+
+/* Symbols Section */
+        #symbols {
+            background-color: #1a1a1a;
+            padding: 90px 20px;
+        }
+
+        #symbols h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            color: #E3E2DE;
+        }
+
+        .symbols-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 45px;
+        }
+
+        .symbol-card {
+            background: #292929;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .symbol-card:hover {
+            background: #444;
+            transform: scale(1.05);
+            cursor: url('images/symbol-cursor.png'), pointer;
+        }
+
+        .symbol-card img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            margin-bottom: 0px;
+            transition: transform 0.3s ease;
+        }
+
+        .symbol-card:hover img {
+            transform: scale(1.2);
+        }
+
+        .symbol-info {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            color: #F4AB4B;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .symbol-card:hover .symbol-info {
+            opacity: 1;
+        }
+
+/* Artwork Section */
+        .art-gallery-section {
+          padding: 60px 20px;
+          background-color: #F4AB4B;
+          text-align: center;
+        }
+
+        .art-gallery-section h2 {
+          font-size: 3.5rem;
+          margin-bottom: 30px;
+          color: #2d2d2d;
+        }
+
+        .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); /* Empat columns */
+          gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+          .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+          }
+        }
+
+        @media (max-width: 600px) {
+          .gallery-grid {
+            grid-template-columns: 1fr; /* One column on mobile */
+          }
+        }
+
+        .art-item {
+          position: relative;
+          overflow: hidden;
+          border-radius: 12px;
+          background: #292929;
+          padding: 20px;
+          cursor: pointer;
+          transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .art-item:hover {
+          background: #444;
+          transform: scale(1.05);
+        }
+
+        .art-item img {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.3s ease;
+        }
+
+        .art-item:hover img {
+          transform: scale(1.2);
+            cursor: url('images/symbol-cursor.png'), pointer;
+
+        }
+
+        .art-info {
+          position: absolute;
+          bottom: 15px;
+          left: 15px;
+          right: 15px;
+          background: rgba(0, 0, 0, 0.8);
+          padding: 10px;
+          border-radius: 8px;
+          color: #F4AB4B;
+          font-size: 0.95rem;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          pointer-events: none;
+        }
+
+        .art-item:hover .art-info {
+          opacity: 1;
+        }
+
+/* Modal Styles */
+        .art-modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          padding-top: 60px;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+          display: block;
+          margin: auto;
+          max-width: 80%;
+          max-height: 80vh;
+          border-radius: 12px;
+          animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+          from {transform: scale(0.8); opacity: 0;}
+          to {transform: scale(1); opacity: 1;}
+        }
+
+        .close-modal {
+          position: absolute;
+          top: 30px;
+          right: 40px;
+          color: white;
+          font-size: 40px;
+          font-weight: bold;
+          cursor: pointer;
+          z-index: 1001;
+        }
+
+        #modal-caption {
+          color: #f4f4f4;
+          text-align: center;
+          margin-top: 10px;
+          font-size: 1.1rem;
+        }
+
+/* Legacy Section */
+        .legacy-section {
+          background: url('images/basquiat-bg.jpg') center center / cover no-repeat;
+          background-attachment: fixed;
+          padding: 60px 20px;
+          text-align: center;
+          color: white;
+          position: relative;
+          z-index: 1;
+        }
+
+        .legacy-section::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: rgba(0, 0, 0, 0.7); /* dark overlay for readability */
+          z-index: -1;
+        }
+
+        .legacy-section h2 {
+          font-size: 3.5rem;
+          color: ##9F4030;
+          margin-bottom: 50px;
+        }
+
+        .legacy-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 20px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+
+        .legacy-card {
+          position: relative;
+          background: #2d2d2d;
+          padding: 25px 20px 25px 50px;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          transition: transform 0.3s ease, background 0.3s ease;
+          overflow: hidden;
+        }
+
+        .legacy-card::before {
+          content: "❝";
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          font-size: 2.5rem;
+          color: #F4AB4B;
+          animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+
+/* Create Like Basquiat Section */
+        #create-like-basquiat {
+        padding: 60px 20px;
+        background: url('images/thismybg.jpg') center center / cover no-repeat;
+        text-align: center;
+        color: white;
+        position: relative;
+        }
+
+        #create-like-basquiat::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.05); /* optional overlay for readability */
+        z-index: 0;
+        }
+
+        #create-like-basquiat * {
+        position: relative;
+        z-index: 1;
+        }
+
+        #create-like-basquiat h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #E3E2DE;
+        }
+
+        .create-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .create-container p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #2d2d2d;
+        }
+
+        .create-button, .clear-button {
+            padding: 15px 30px;
+            background-color: #2d2d2d;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #E3E2DE;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        .create-button:hover, .clear-button:hover {
+            background-color: #9F4030;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        #drawingCanvas {
+            display: none;
+            margin-top: 30px;
+            border: 3px solid #9F4030;
+            background: #000;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Landing Page -->
+    <section id="landing-page">
+        <h1 class="title">JEAN MICHEL <br> BASQUIAT</h1>
+        <a href="#timeline" class="scroll-down">↓</a>
+    </section>
+
+<!-- Timeline Section -->
+    <section class="timeline-wrapper">
+      <h2 class="timeline-heading">TIMELINE</h2>
+      <div class="timeline-entry left">
+        <div class="timeline-year">1960</div>
+        <div class="timeline-box">
+          <h3>Birth of A Legend</h3>
+          <img src="images/basquiat-childhood.png" alt="Basquiat Childhood">
+          <p><br>Basquiat was born on 22 December 1960 in Brooklyn, New York. His mother was of Haitian descent and his father was Puerto Rican. He also had two younger sisters. From an early age, his mother encouraged him to appreciate the arts by regularly taking him to museums throughout Manhattan. It was also noted that he was quite gifted from a very early age. Basquiat supposedly learned to read and write when he was only four years old. He could speak French, Spanish and English well before his teenage years. He soon turned this formidable intelligence towards art.</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry right">
+        <div class="timeline-year">1967</div>
+        <div class="timeline-box">
+          <h3>The Young Prodigy</h3>
+          <img src="images/museum.png" alt="Enrolled Museum">
+          <p><br>He was enrolled in the Brooklyn Museum of Art (as a junior member) and when he was only seven years old, he began studying in a prestigious art school near his home. It was here that he entered into his first real artistic endeavour. Along with a classmate, he published a short children's book. Basquiat also began developing a talent for athletics; particularly in track and field events.</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry left">
+        <div class="timeline-year">1978</div>
+        <div class="timeline-box">
+          <h3>The First Turning Point</h3>
+          <img src="images/basquiat-samo.png" alt="SAMO Era">
+          <p><br>SAMO graffiti appears in NYC. Under the pseudonym SAMO (short for “Same Old Shit”), he collaborated with his friend Al Diaz to create thought-provoking and often cryptic messages on New York City walls. As a teenager, Basquiat gained attention for its thought-provoking messages and distinctive style. This period laid the foundation for Basquiat’s exploration of graffiti’s expressive power and potential to convey social and political commentary.</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry right">
+        <div class="timeline-year">1981</div>
+        <div class="timeline-box">
+          <h3>First Major Solo Exhibition</h3>
+          <img src="images/basquiat-first-exhibition.png" alt="First Exhibition">
+          <p><br>Basquiat was picked up by his first New York dealer, Annina Nosei, whose SoHo gallery had opened in 1980. She also gave the young painter his first proper studio in the gallery’s basement, as well as a slew of large-scale canvases and “access to all the materials he needed, including high-quality paints,” said art dealer Jeffrey Deitch, who knew Basquiat in the ’80s and read the artist’s eulogy at his funeral after his untimely death in 1988, at the age of 27.</p>
+        </div>
+      </div>
+
+      <div class="timeline-entry left">
+        <div class="timeline-year">1988</div>
+        <div class="timeline-box">
+          <h3>Death of A Legend</h3>
+          <img src="images/riding-with-death.png" alt="Last Exhibition">
+          <p><br>Basquiat's last artwork before his death. Many contemporaries observe that the death of Andy Warhol in 1987 had a profound effect upon the demeanour and emotional state of Basquiat. He became depressed more frequently and as a result, his use of heroin increased. It should still be mentioned that he made several attempts to become sober; the final effort during a trip to Hawaii. He died of a heroin overdose on 12 August 1988. At the time, he was only 27 years old.</p>
+        </div>
+      </div>
+    </section>
+
+<!-- Symbols Section -->
+    <section id="symbols">
+        <h2 class="section-title">Symbols of Basquiat</h2>
+        <div class="symbols-grid">
+            <div class="symbol-card">
+                <img src="images/crown.png" alt="Crown Icon">
+                <div class="symbol-info">
+                    <h3>Crown</h3>
+                    <p>Symbol of Black excellence and royalty. Basquiat used it to honor heroes.</p>
+                </div>
+            </div>
+            <div class="symbol-card">
+                <img src="images/skull.jpg" alt="Skull Icon">
+                <div class="symbol-info">
+                    <h3>Skull</h3>
+                    <p>Represents the mortality, identity, and inner psychology.</p>
+                </div>
+            </div>
+            <div class="symbol-card">
+                <img src="images/dino.jpg" alt="Dinosaur Icon">
+                <div class="symbol-info">
+                    <h3>Dinosaur</h3>
+                    <p>A symbol of strength, extinction, and historical legacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Artworks Section -->
+    <section class="art-gallery-section">
+      <h2>BASQUIAT'S ICONIC WORKS</h2>
+      <div class="gallery-grid">
+        <div class="art-item">
+          <img src="images/art1.png" alt="Untitled (Skull)">
+          <div class="art-info">
+            <h3>Untitled (Skull), 1981</h3>
+            <p>Radiates raw power—electric color, chaos, and bold symbolism—marking Basquiat’s explosive rise. Sold for $110M in 2017, it redefined American art history.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art2.png" alt="Boy and Dog in a Johnnypump">
+          <div class="art-info">
+            <h3>Boy and Dog in a Johnnypump, 1982</h3>
+            <p>Explodes with color and chaos, blending childhood energy with urban tension—an emotional, iconic NYC scene, sold for $100 million in 2020.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art3.png" alt="Hollywood Africans">
+          <div class="art-info">
+            <h3>Hollywood Africans, 1983</h3>
+            <p>Critiques racist Hollywood stereotypes and reflects Black identity through real-life artist figures.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art4.png" alt="Irony of a Negro Policeman">
+          <div class="art-info">
+            <h3>Irony of a Negro Policeman, 1981</h3>
+            <p>Conflict of Black identity within oppressive authority systems, using Basquiat’s raw visual language.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art5.png" alt="BHorn Players">
+          <div class="art-info">
+            <h3>Horn Players, 1983</h3>
+            <p>Celebrates jazz legends Parker and Gillespie, blending Basquiat’s graffiti style with themes of Black artistry and resistance.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art6.png" alt="Dustheads">
+          <div class="art-info">
+            <h3>Dustheads, 1982</h3>
+            <p>Drug-induced chaos and euphoria through Basquiat’s intense colours, distorted figures, and explosive emotional energy.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art7.png" alt="Charles The First">
+          <div class="art-info">
+            <h3>Charles The First, 1982</h3>
+            <p>This honors jazz icon Charlie Parker, blending Basquiat’s symbols of Black royalty, tragedy, and artistic genius.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art8.png" alt="Head">
+          <div class="art-info">
+            <h3>Head, 1983</h3>
+            <p>Powerfully captures inner turmoil through bold lines, vivid colors, and haunting, expressive features layered with chaotic symbolism.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art9.png" alt="PerCapita">
+          <div class="art-info">
+            <h3>PerCapita, 1982</h3>
+            <p>Critiques economic injustice through vivid imagery—crowns, symbols, and text—blending race, religion, and capitalism’s harsh realities.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <img src="images/art10.png" alt="Cadillac Moon">
+          <div class="art-info">
+            <h3>Cadillac Moon, 1981</h3>
+            <p>Contrasts luxury and aspiration with raw expression, using TV screens and symbols to critique the American Dream.</p>
+          </div>
+        </div>
+        <!-- Add more art-items as needed -->
+      </div>
+    </section>
+
+<!-- Modal for Enlarged Artwork -->
+    <div id="art-modal" class="art-modal">
+      <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+      <div id="modal-caption"></div>
+    </div>
+
+<!-- Legacy Section -->
+    <section class="legacy-section" id="legacy">
+      <h2 class="section-title">Basquiat’s Lasting Impact</h2>
+      <div class="legacy-grid">
+        <div class="legacy-card">
+          <p>“He’s the king of the downtown scene.”</p>
+          <span>– Jay-Z</span>
+        </div>
+        <div class="legacy-card">
+          <p>Basquiat’s work has influenced designers like Virgil Abloh and artists like Banksy.</p>
+        </div>
+        <div class="legacy-card">
+          <p>He was the youngest artist ever to exhibit at Documenta in Germany (age 22).</p>
+        </div>
+        <div class="legacy-card">
+          <p>“He spoke in colors and symbols that hit harder than words.”</p>
+          <span>– Kehinde Wiley</span>
+        </div>
+        <div class="legacy-card">
+          <p>Madonna (then - still unknown), was Basquiat's girlfriend.</p>
+        </div>
+        <div class="legacy-card">
+          <p>The "ANTI" album cover for Rihanna's album is inspired by Basquiat's SAMO tag.</p>
+        </div>
+        <!-- Add more cards as you wish -->
+      </div>
+    </section>
+
+<!-- Create Like Basquiat Section -->
+    <section id="create-like-basquiat">
+        <h2 class="section-title">Unleash Your Inner Rebel!</h2>
+        <div class="create-container">
+            <p>Come on! Use our interactive tool to draw graffiti-inspired art, Basquiat-style.</p>
+            <button class="create-button" onclick="toggleCanvas()">Launch the Graffiti Canvas</button>
+            <button class="clear-button" onclick="clearCanvas()">Clear Canvas</button>
+            <p class="note">More features coming soon!</p>
+            <canvas id="drawingCanvas" width="600" height="400"></canvas>
+        </div>
+    </section>
+
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let painting = false;
+
+        function toggleCanvas() {
+            canvas.style.display = canvas.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        function endPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#F4AB4B';
+
+            const rect = canvas.getBoundingClientRect();
+            let x, y;
+
+            if (e.touches) {
+                x = e.touches[0].clientX - rect.left;
+                y = e.touches[0].clientY - rect.top;
+            } else {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            }
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+
+        canvas.addEventListener('touchstart', startPosition);
+        canvas.addEventListener('touchend', endPosition);
+        canvas.addEventListener('touchmove', draw);
+    </script>
+
+    <script>
+      const entries = document.querySelectorAll('.timeline-entry');
+
+      const observer = new IntersectionObserver(entriesList => {
+        entriesList.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target); // Trigger only once
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+      entries.forEach(entry => {
+        observer.observe(entry);
+      });
+    </script>
+
+    <script>
+      const modal = document.getElementById('art-modal');
+      const modalImg = document.getElementById('modal-img');
+      const captionText = document.getElementById('modal-caption');
+      const closeModal = document.querySelector('.close-modal');
+
+      document.querySelectorAll('.art-item img').forEach((img) => {
+        img.addEventListener('click', () => {
+          modal.style.display = 'block';
+          modalImg.src = img.src;
+          captionText.innerText = img.closest('.art-item').querySelector('.art-info p').innerText;
+
+        });
+      });
+
+      closeModal.onclick = () => {
+        modal.style.display = 'none';
+      }
+
+      window.onclick = function(event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      }
+    </script>
+
+ 
+</body>
+</html>
